@@ -41,7 +41,7 @@ const score = {
 };
 
 const game = () => {
-  const playerSelection = window.prompt(
+  const playerSelection = prompt(
     'please select between rock paper and scissors'
   );
   const computerSelection = computerPlay();
