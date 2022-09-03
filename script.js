@@ -67,7 +67,7 @@ const computerPlay = () => {
 };
 
 const playRound = (playerSelection, computerSelection) => {
-  if (playerSelection == null) {
+  if (playerSelection == null || undefined) {
     prompt('Please make a selection between rock, paper and scissors');
     return;
   } else if (!playerSelection.includes('rock', 'paper', 'scissors')) {
