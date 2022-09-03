@@ -41,23 +41,21 @@ const score = {
 };
 
 const game = () => {
-  const playerSelection = prompt(
-    'please select between rock paper and scissors'
-  );
+  const playerSelection = playSelection();
   const computerSelection = computerPlay();
   const message = playRound(playerSelection, computerSelection);
   getWinner(message);
 };
 
-// const playSelection = () => {
-//   const userInput = prompt('Please select between rock paper and scissors ');
-//   // if (userInput === '' || userInput === null) {
-//   //   prompt('Please input a  correct value');
-//   //   return;
-//   // }
+const playSelection = () => {
+  const userInput = prompt('Please select between rock paper and scissors ');
 
-//   return userInput;
-// };
+  if (userInput == 'rock' || userInput == 'paper' || userInput == 'scissors') {
+    return userInput;
+  } else {
+    prompt('please add a valid input');
+  }
+};
 
 const computerPlay = () => {
   let rand = Math.floor(Math.random() * 3) + 1;
