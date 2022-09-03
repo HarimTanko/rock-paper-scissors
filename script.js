@@ -41,26 +41,15 @@ const score = {
 };
 
 const game = () => {
-  const playerSelection = playSelection();
+  const playerSelection = prompt(
+    'please select between rock,paper and scissors'
+  );
   const computerSelection = computerPlay();
 
   const message = playRound(playerSelection, computerSelection);
 
-  getWinner(message);
-};
-
-const playSelection = () => {
-  const userInput = prompt('Please select between rock paper and scissors ');
-
-  if (
-    userInput !== 'rock' &&
-    userInput !== 'paper' &&
-    userInput !== 'scissors' &&
-    userInput === null
-  ) {
-    prompt('please add a valid input');
-  } else {
-    return userInput;
+  for (let i = 0; i < 5; i++) {
+    getWinner(message);
   }
 };
 
@@ -114,18 +103,18 @@ const getWinner = (message) => {
   return score;
 };
 
-const declareWInner = () => {
-  for (let i = 0; i < 5; i++) {
-    game();
-  }
+// const declareWInner = () => {
+//   for (let i = 0; i < 5; i++) {
+//     game();
+//   }
 
-  if (score.player > score.computer) {
-    console.log(`Player wins ${score.player} to ${score.computer}`);
-  } else if (score.computer > score.player) {
-    console.log(`Computer wins ${score.computer} to ${score.player}`);
-  } else {
-    console.log(`Game ends in a draw  ${score.player} - ${score.computer}`);
-  }
-};
+//   if (score.player > score.computer) {
+//     console.log(`Player wins ${score.player} to ${score.computer}`);
+//   } else if (score.computer > score.player) {
+//     console.log(`Computer wins ${score.computer} to ${score.player}`);
+//   } else {
+//     console.log(`Game ends in a draw  ${score.player} - ${score.computer}`);
+//   }
+// };
 
 declareWInner();
