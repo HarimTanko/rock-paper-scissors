@@ -43,8 +43,8 @@ const score = {
 const game = () => {
   const playerSelection = prompt(
     'make selection between rock, paper and scissors'
-  );
-  const computerSelection = computerPlay();
+  ).toLocaleLowerCase();
+  const computerSelection = computerPlay().toLocaleLowerCase();
   const message = playRound(playerSelection.toUpperCase(), computerSelection);
   getWinner(message);
 };
