@@ -52,9 +52,9 @@ const playSelection = () => {
   if (userInput === null || userInput === undefined) {
     prompt('Please input a  correct value');
     return;
-  } else {
-    return userInput;
   }
+
+  return userInput;
 };
 
 const computerPlay = () => {
