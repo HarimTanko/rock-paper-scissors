@@ -72,6 +72,7 @@ const playRound = (playerSelection, computerSelection) => {
     return;
   } else if (!playerSelection.includes('rock', 'paper', 'scissors')) {
     prompt('please choose between rock paper and scissors');
+    return;
   }
 
   if (playerSelection == computerSelection) {
@@ -91,6 +92,10 @@ const playRound = (playerSelection, computerSelection) => {
 };
 
 const getWinner = (message) => {
+  if (!message.includes('You Win!') || !message.includes('You Lose!')) {
+    return;
+  }
+
   if (message === 'You Win!') {
     score.player++;
     console.log(
