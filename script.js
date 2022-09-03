@@ -98,8 +98,10 @@ const getWinner = (message) => {
       console.log(
         `You lose! score is: Player: ${score.player} -  Computer: ${score.computer}`
       );
-    } else {
+    } else if (message === 'Draw') {
       console.log('This round is a draw');
+    } else {
+      console.log('Please input the correct value');
     }
 
     return score;
