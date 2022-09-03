@@ -41,7 +41,9 @@ const score = {
 };
 
 const game = () => {
-  const playerSelection = prompt('make selection');
+  const playerSelection = prompt(
+    'make selection between rock, paper and scissors'
+  );
   const computerSelection = computerPlay();
   const message = playRound(playerSelection.toUpperCase(), computerSelection);
   getWinner(message);
@@ -66,8 +68,10 @@ const computerPlay = () => {
 
 const playRound = (playerSelection, computerSelection) => {
   if (playerSelection == null) {
-    prompt('Please make a selection');
+    prompt('Please make a selection between rock, paper and scissors');
+    return;
   }
+
   if (playerSelection == computerSelection) {
     return 'Draw';
   } else if (computerSelection == 'ROCK') {
