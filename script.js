@@ -104,8 +104,6 @@ const getWinner = (message) => {
     );
   } else if (message === 'Draw') {
     console.log('This round is a draw');
-  } else {
-    console.log('Please input the correct value');
   }
 
   return score;
