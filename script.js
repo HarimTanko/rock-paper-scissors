@@ -67,45 +67,47 @@ const computerPlay = () => {
 };
 
 const playRound = (playerSelection, computerSelection) => {
-  if (playerSelection == computerSelection) {
-    return 'Draw';
-  } else if (computerSelection == 'ROCK') {
-    console.log(`Computer selected - ${computerSelection} PAPER beats ROCK`);
-    return playerSelection == 'PAPER' ? 'You Win!' : 'You Lose!';
-  } else if (computerSelection == 'PAPER') {
-    console.log(
-      `Computer selected - ${computerSelection} SCISSORS beats PAPER`
-    );
-    return playerSelection == 'SCISSORS' ? 'You Win!' : 'You Lose!';
-  } else if (computerSelection == 'SCISSORS') {
-    console.log(`Computer selected - ${computerSelection} ROCK beats SCISSORS`);
-    return playerSelection == 'ROCK' ? 'You Win!' : 'You Lose!';
+  if (playerSelection === null || playerSelection === undefined) {
+    prompt('Please input a valid value');
+    return;
+  } else {
+    if (playerSelection == computerSelection) {
+      return 'Draw';
+    } else if (computerSelection == 'ROCK') {
+      console.log(`Computer selected - ${computerSelection} PAPER beats ROCK`);
+      return playerSelection == 'PAPER' ? 'You Win!' : 'You Lose!';
+    } else if (computerSelection == 'PAPER') {
+      console.log(
+        `Computer selected - ${computerSelection} SCISSORS beats PAPER`
+      );
+      return playerSelection == 'SCISSORS' ? 'You Win!' : 'You Lose!';
+    } else if (computerSelection == 'SCISSORS') {
+      console.log(
+        `Computer selected - ${computerSelection} ROCK beats SCISSORS`
+      );
+      return playerSelection == 'ROCK' ? 'You Win!' : 'You Lose!';
+    }
   }
 };
 
 const getWinner = (message) => {
-  if (message !== 'You Win!' || message !== 'You Lose!' || message !== 'Draw') {
-    prompt('please input the correct value');
-    return;
+  if (message === 'You Win!') {
+    score.player++;
+    console.log(
+      `You win! score is: Player: ${score.player} - Computer: ${score.computer}`
+    );
+  } else if (message === 'You Lose!') {
+    score.computer++;
+    console.log(
+      `You lose! score is: Player: ${score.player} -  Computer: ${score.computer}`
+    );
+  } else if (message === 'Draw') {
+    console.log('This round is a draw');
   } else {
-    if (message === 'You Win!') {
-      score.player++;
-      console.log(
-        `You win! score is: Player: ${score.player} - Computer: ${score.computer}`
-      );
-    } else if (message === 'You Lose!') {
-      score.computer++;
-      console.log(
-        `You lose! score is: Player: ${score.player} -  Computer: ${score.computer}`
-      );
-    } else if (message === 'Draw') {
-      console.log('This round is a draw');
-    } else {
-      console.log('Please input the correct value');
-    }
-
-    return score;
+    console.log('Please input the correct value');
   }
+
+  return score;
 };
 
 const declareWInner = () => {
