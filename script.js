@@ -84,21 +84,26 @@ const playRound = (playerSelection, computerSelection) => {
 };
 
 const getWinner = (message) => {
-  if (message === 'You Win!') {
-    score.player++;
-    console.log(
-      `You win! score is: Player: ${score.player} - Computer: ${score.computer}`
-    );
-  } else if (message === 'You Lose!') {
-    score.computer++;
-    console.log(
-      `You lose! score is: Player: ${score.player} -  Computer: ${score.computer}`
-    );
+  if (message !== 'You Win!' || message !== 'You Lose!' || message !== 'Draw') {
+    prompt('please input the correct value');
+    return;
   } else {
-    console.log('This round is a draw');
-  }
+    if (message === 'You Win!') {
+      score.player++;
+      console.log(
+        `You win! score is: Player: ${score.player} - Computer: ${score.computer}`
+      );
+    } else if (message === 'You Lose!') {
+      score.computer++;
+      console.log(
+        `You lose! score is: Player: ${score.player} -  Computer: ${score.computer}`
+      );
+    } else {
+      console.log('This round is a draw');
+    }
 
-  return score;
+    return score;
+  }
 };
 
 const declareWInner = () => {
