@@ -41,12 +41,20 @@ const score = {
 };
 
 const game = () => {
-  const playerSelection = prompt(
-    'make selection between rock, paper and scissors'
-  ).toLocaleLowerCase();
+  const playerSelection = playSelection();
   const computerSelection = computerPlay().toLocaleLowerCase();
   const message = playRound(playerSelection.toUpperCase(), computerSelection);
   getWinner(message);
+};
+
+const playSelection = () => {
+  const userInput = prompt('Please select between rock paper and scissors ');
+  if (userInput === null || userInput === undefined) {
+    prompt('Please input a  correct value');
+    return;
+  } else {
+    return userInput;
+  }
 };
 
 const computerPlay = () => {
@@ -67,26 +75,19 @@ const computerPlay = () => {
 };
 
 const playRound = (playerSelection, computerSelection) => {
-  if (playerSelection === null || playerSelection === undefined) {
-    prompt('Please input a valid value');
-    return;
-  } else {
-    if (playerSelection == computerSelection) {
-      return 'Draw';
-    } else if (computerSelection == 'ROCK') {
-      console.log(`Computer selected - ${computerSelection} PAPER beats ROCK`);
-      return playerSelection == 'PAPER' ? 'You Win!' : 'You Lose!';
-    } else if (computerSelection == 'PAPER') {
-      console.log(
-        `Computer selected - ${computerSelection} SCISSORS beats PAPER`
-      );
-      return playerSelection == 'SCISSORS' ? 'You Win!' : 'You Lose!';
-    } else if (computerSelection == 'SCISSORS') {
-      console.log(
-        `Computer selected - ${computerSelection} ROCK beats SCISSORS`
-      );
-      return playerSelection == 'ROCK' ? 'You Win!' : 'You Lose!';
-    }
+  if (playerSelection == computerSelection) {
+    return 'Draw';
+  } else if (computerSelection == 'ROCK') {
+    console.log(`Computer selected - ${computerSelection} PAPER beats ROCK`);
+    return playerSelection == 'PAPER' ? 'You Win!' : 'You Lose!';
+  } else if (computerSelection == 'PAPER') {
+    console.log(
+      `Computer selected - ${computerSelection} SCISSORS beats PAPER`
+    );
+    return playerSelection == 'SCISSORS' ? 'You Win!' : 'You Lose!';
+  } else if (computerSelection == 'SCISSORS') {
+    console.log(`Computer selected - ${computerSelection} ROCK beats SCISSORS`);
+    return playerSelection == 'ROCK' ? 'You Win!' : 'You Lose!';
   }
 };
 
