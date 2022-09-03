@@ -44,9 +44,15 @@ const game = () => {
   const playerSelection = playSelect();
   const computerSelection = computerPlay();
 
-  const message = playRound(playerSelection, computerSelection);
-
-  getWinner(message);
+  for (let i = 0; i < 5; i++) {
+    if (playerSelection === null) {
+      prompt('please input a valid selection');
+      i--;
+    } else {
+      const message = playRound(playerSelection, computerSelection);
+      getWinner(message);
+    }
+  }
 };
 
 function playSelect() {
@@ -115,9 +121,7 @@ const getWinner = (message) => {
 };
 
 const declareWInner = () => {
-  for (let i = 0; i < 5; i++) {
-    game();
-  }
+  game();
 
   if (score.player > score.computer) {
     console.log(`Player wins ${score.player} to ${score.computer}`);
