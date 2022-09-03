@@ -35,52 +35,36 @@
 
 // console.log(evenOdd(19));
 
+let options = ['rock', 'paper', 'scissors'];
+let playerSelection = '';
+let computerSelection = '';
+
 const score = {
   player: 0,
   computer: 0,
 };
 
-const game = () => {
-  const playerSelection = playSelect();
-  const computerSelection = computerPlay();
-
-  for (let i = 0; i < 5; i++) {
-    if (playerSelection === null) {
-      prompt('please input a valid selection');
-      i--;
-    } else {
-      const message = playRound(playerSelection, computerSelection);
-      getWinner(message);
-    }
-  }
-};
-
 function playSelect() {
-  const input = prompt('please select between rock, paper and scissors');
+  let playerInput = prompt('please select between rock, paper and scissors');
+  playerSelection = playerInput.toLowerCase();
 
-  while (
-    input !== 'rock' ||
-    input !== 'paper' ||
-    input !== 'scissors' ||
-    input === null
-  ) {
-    prompt('Please input a valid slection');
+  while (options.indexOf(playerSelection) === -1) {
+    playerInput = prompt('Please input a valid slection');
+    playerSelection = playerInput.toLowerCase();
   }
-
-  return input;
 }
 
 const computerPlay = () => {
   let rand = Math.floor(Math.random() * 3) + 1;
   switch (rand) {
     case 1:
-      return 'rock';
+      computerSelection = 'rock';
       break;
     case 2:
-      return 'paper';
+      computerSelection = 'paper';
       break;
     case 3:
-      return 'scissors';
+      computerSelection = 'scissors';
       break;
     default:
       break;
@@ -88,48 +72,35 @@ const computerPlay = () => {
 };
 
 const playRound = (playerSelection, computerSelection) => {
-  if (playerSelection == computerSelection) {
-    return 'Draw';
-  } else if (computerSelection == 'rock') {
-    console.log(`Computer selected - ${computerSelection}`);
-    return playerSelection == 'paper' ? 'You Win!' : 'You Lose!';
-  } else if (computerSelection == 'paper') {
-    console.log(`Computer selected - ${computerSelection}`);
-    return playerSelection == 'scissors' ? 'You Win!' : 'You Lose!';
-  } else if (computerSelection == 'scissors') {
-    console.log(`Computer selected - ${computerSelection}`);
-    return playerSelection == 'rock' ? 'You Win!' : 'You Lose!';
-  }
-};
-
-const getWinner = (message) => {
-  if (message === 'You Win!') {
+  if (playerSelection === computerSelection) {
+    console.log(`Draw. ${playerSelection} equal to ${computerSelection}`);
+  } else if (
+    (playerSelection === 'rock' && computerSelection === 'scissors') ||
+    (playerSelection == 'paper' && computerSelection === 'rock') ||
+    (playerSelection === 'scissors' && computerSelection === 'paper')
+  ) {
     score.player++;
     console.log(
-      `You win! score is: Player: ${score.player} - Computer: ${score.computer}`
+      `Player wins round  ${playerSelection} beats ${computerSelection} `
     );
-  } else if (message === 'You Lose!') {
+  } else {
     score.computer++;
     console.log(
-      `You lose! score is: Player: ${score.player} -  Computer: ${score.computer}`
+      `Computer wins round ${computerSelection} beats ${playerSelection}`
     );
-  } else if (message === 'Draw') {
-    console.log('This round is a draw');
-  }
-
-  return score;
-};
-
-const declareWInner = () => {
-  game();
-
-  if (score.player > score.computer) {
-    console.log(`Player wins ${score.player} to ${score.computer}`);
-  } else if (score.computer > score.player) {
-    console.log(`Computer wins ${score.computer} to ${score.player}`);
-  } else {
-    console.log(`Game ends in a draw  ${score.player} - ${score.computer}`);
   }
 };
 
-declareWInner();
+for (let i = 0; i < 5; i++) {
+  playSelect();
+  computerPlay();
+
+  playRound(playerSelection, computerSelection);
+}
+if (score.player > score.computer) {
+  console.log(`Player wins ${score.player} to ${score.computer}`);
+} else if (score.computer > score.player) {
+  console.log(`Computer wins ${score.computer} to ${score.player}`);
+} else {
+  console.log(`Game ends in a draw  ${score.player} - ${score.computer}`);
+}
