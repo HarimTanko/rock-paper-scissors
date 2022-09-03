@@ -65,7 +65,7 @@ const computerPlay = () => {
 };
 
 const playRound = (playerSelection, computerSelection) => {
-  if (playerSelection == '') {
+  if (playerSelection == null) {
     prompt('Please make a selection');
   }
   if (playerSelection == computerSelection) {
