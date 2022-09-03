@@ -48,7 +48,7 @@ function playSelect() {
   let playerInput = prompt('please select between rock, paper and scissors');
   playerSelection = playerInput.toLowerCase();
 
-  while (options.indexOf(playerSelection) === -1) {
+  while (options.indexOf(playerSelection) === -1 || playerSelection === null) {
     playerInput = prompt('Please input a valid slection');
     playerSelection = playerInput.toLowerCase();
   }
