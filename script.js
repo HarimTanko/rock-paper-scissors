@@ -52,7 +52,7 @@ const playSelection = () => {
 
   if (userInput == 'rock' || userInput == 'paper' || userInput == 'scissors') {
     return userInput;
-  } else {
+  } else if (userInput === null || '') {
     prompt('please add a valid input');
   }
 };
