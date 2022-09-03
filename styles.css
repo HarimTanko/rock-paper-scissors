@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.container h1 {
+  margin: 2rem 0;
+  font-size: 3rem;
+}
+
+.images {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.images img {
+  width: 400px;
+  margin: 2rem 1rem;
+  border-radius: 10px;
+}
