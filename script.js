@@ -51,6 +51,17 @@ const game = () => {
   getWinner(message);
 };
 
+function playSelect() {
+  input = prompt('please select between rock, paper and scissors');
+
+  while (input !== 'rock' || input !== 'paper' || input !== 'scissors') {
+    prompt('Please input a valid slection');
+    return;
+  }
+
+  return input;
+}
+
 const computerPlay = () => {
   let rand = Math.floor(Math.random() * 3) + 1;
   switch (rand) {
