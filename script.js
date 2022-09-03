@@ -63,13 +63,13 @@ const computerPlay = () => {
   let rand = Math.floor(Math.random() * 3) + 1;
   switch (rand) {
     case 1:
-      return 'ROCK';
+      return 'rock';
       break;
     case 2:
-      return 'PAPER';
+      return 'paper';
       break;
     case 3:
-      return 'SCISSORS';
+      return 'scissors';
       break;
     default:
       break;
@@ -79,17 +79,17 @@ const computerPlay = () => {
 const playRound = (playerSelection, computerSelection) => {
   if (playerSelection == computerSelection) {
     return 'Draw';
-  } else if (computerSelection == 'ROCK') {
+  } else if (computerSelection == 'rock') {
     console.log(`Computer selected - ${computerSelection} PAPER beats ROCK`);
-    return playerSelection == 'PAPER' ? 'You Win!' : 'You Lose!';
-  } else if (computerSelection == 'PAPER') {
+    return playerSelection == 'paper' ? 'You Win!' : 'You Lose!';
+  } else if (computerSelection == 'paper') {
     console.log(
       `Computer selected - ${computerSelection} SCISSORS beats PAPER`
     );
-    return playerSelection == 'SCISSORS' ? 'You Win!' : 'You Lose!';
-  } else if (computerSelection == 'SCISSORS') {
+    return playerSelection == 'scissors' ? 'You Win!' : 'You Lose!';
+  } else if (computerSelection == 'scissors') {
     console.log(`Computer selected - ${computerSelection} ROCK beats SCISSORS`);
-    return playerSelection == 'ROCK' ? 'You Win!' : 'You Lose!';
+    return playerSelection == 'rock' ? 'You Win!' : 'You Lose!';
   }
 };
 
