@@ -43,6 +43,7 @@ const score = {
 const game = () => {
   const playerSelection = playSelection();
   const computerSelection = computerPlay();
+
   const message = playRound(playerSelection, computerSelection);
   getWinner(message);
 };
@@ -50,10 +51,15 @@ const game = () => {
 const playSelection = () => {
   const userInput = prompt('Please select between rock paper and scissors ');
 
-  if (userInput == 'rock' || userInput == 'paper' || userInput == 'scissors') {
-    return userInput;
-  } else if (userInput === null || '') {
+  if (
+    userInput !== 'rock' ||
+    userInput !== 'paper' ||
+    userInput !== 'scissors' ||
+    userInput === null
+  ) {
     prompt('please add a valid input');
+  } else {
+    return userInput;
   }
 };
 
