@@ -48,9 +48,7 @@ const game = () => {
 
   const message = playRound(playerSelection, computerSelection);
 
-  for (let i = 0; i < 5; i++) {
-    getWinner(message);
-  }
+  getWinner(message);
 };
 
 const computerPlay = () => {
@@ -103,18 +101,18 @@ const getWinner = (message) => {
   return score;
 };
 
-// const declareWInner = () => {
-//   for (let i = 0; i < 5; i++) {
-//     game();
-//   }
+const declareWInner = () => {
+  for (let i = 0; i < 5; i++) {
+    game();
+  }
 
-//   if (score.player > score.computer) {
-//     console.log(`Player wins ${score.player} to ${score.computer}`);
-//   } else if (score.computer > score.player) {
-//     console.log(`Computer wins ${score.computer} to ${score.player}`);
-//   } else {
-//     console.log(`Game ends in a draw  ${score.player} - ${score.computer}`);
-//   }
-// };
+  if (score.player > score.computer) {
+    console.log(`Player wins ${score.player} to ${score.computer}`);
+  } else if (score.computer > score.player) {
+    console.log(`Computer wins ${score.computer} to ${score.player}`);
+  } else {
+    console.log(`Game ends in a draw  ${score.player} - ${score.computer}`);
+  }
+};
 
 declareWInner();
