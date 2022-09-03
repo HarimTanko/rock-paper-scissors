@@ -45,6 +45,7 @@ const game = () => {
   const computerSelection = computerPlay();
 
   const message = playRound(playerSelection, computerSelection);
+
   getWinner(message);
 };
 
@@ -52,9 +53,9 @@ const playSelection = () => {
   const userInput = prompt('Please select between rock paper and scissors ');
 
   if (
-    userInput !== 'rock' ||
-    userInput !== 'paper' ||
-    userInput !== 'scissors' ||
+    userInput !== 'rock' &&
+    userInput !== 'paper' &&
+    userInput !== 'scissors' &&
     userInput === null
   ) {
     prompt('please add a valid input');
