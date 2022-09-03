@@ -80,15 +80,13 @@ const playRound = (playerSelection, computerSelection) => {
   if (playerSelection == computerSelection) {
     return 'Draw';
   } else if (computerSelection == 'rock') {
-    console.log(`Computer selected - ${computerSelection} PAPER beats ROCK`);
+    console.log(`Computer selected - ${computerSelection}`);
     return playerSelection == 'paper' ? 'You Win!' : 'You Lose!';
   } else if (computerSelection == 'paper') {
-    console.log(
-      `Computer selected - ${computerSelection} SCISSORS beats PAPER`
-    );
+    console.log(`Computer selected - ${computerSelection}`);
     return playerSelection == 'scissors' ? 'You Win!' : 'You Lose!';
   } else if (computerSelection == 'scissors') {
-    console.log(`Computer selected - ${computerSelection} ROCK beats SCISSORS`);
+    console.log(`Computer selected - ${computerSelection}`);
     return playerSelection == 'rock' ? 'You Win!' : 'You Lose!';
   }
 };
