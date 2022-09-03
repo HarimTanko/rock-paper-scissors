@@ -110,7 +110,7 @@ const declareWInner = () => {
   } else if (score.computer > score.player) {
     console.log(`Computer wins ${score.computer} to ${score.player}`);
   } else {
-    console.log('Game ends in a draw');
+    console.log(`Game ends in a draw  ${score.player} - ${score.computer}`);
   }
 };
 
