@@ -70,24 +70,23 @@ const playRound = (playerSelection, computerSelection) => {
   if (playerSelection == null || undefined) {
     prompt('Please make a selection between rock, paper and scissors');
     return;
-  } else if (!playerSelection.includes('rock', 'paper', 'scissors')) {
-    prompt('please choose between rock paper and scissors');
-    return;
-  }
-
-  if (playerSelection == computerSelection) {
-    return 'Draw';
-  } else if (computerSelection == 'ROCK') {
-    console.log(`Computer selected - ${computerSelection} PAPER beats ROCK`);
-    return playerSelection == 'PAPER' ? 'You Win!' : 'You Lose!';
-  } else if (computerSelection == 'PAPER') {
-    console.log(
-      `Computer selected - ${computerSelection} SCISSORS beats PAPER`
-    );
-    return playerSelection == 'SCISSORS' ? 'You Win!' : 'You Lose!';
-  } else if (computerSelection == 'SCISSORS') {
-    console.log(`Computer selected - ${computerSelection} ROCK beats SCISSORS`);
-    return playerSelection == 'ROCK' ? 'You Win!' : 'You Lose!';
+  } else {
+    if (playerSelection == computerSelection) {
+      return 'Draw';
+    } else if (computerSelection == 'ROCK') {
+      console.log(`Computer selected - ${computerSelection} PAPER beats ROCK`);
+      return playerSelection == 'PAPER' ? 'You Win!' : 'You Lose!';
+    } else if (computerSelection == 'PAPER') {
+      console.log(
+        `Computer selected - ${computerSelection} SCISSORS beats PAPER`
+      );
+      return playerSelection == 'SCISSORS' ? 'You Win!' : 'You Lose!';
+    } else if (computerSelection == 'SCISSORS') {
+      console.log(
+        `Computer selected - ${computerSelection} ROCK beats SCISSORS`
+      );
+      return playerSelection == 'ROCK' ? 'You Win!' : 'You Lose!';
+    }
   }
 };
 
