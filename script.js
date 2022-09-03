@@ -65,6 +65,9 @@ const computerPlay = () => {
 };
 
 const playRound = (playerSelection, computerSelection) => {
+  if (playerSelection == '') {
+    prompt('Please make a selection');
+  }
   if (playerSelection == computerSelection) {
     return 'Draw';
   } else if (computerSelection == 'ROCK') {
