@@ -49,7 +49,7 @@ const game = () => {
 
 const playSelection = () => {
   const userInput = prompt('Please select between rock paper and scissors ');
-  if (userInput === null || userInput === undefined) {
+  if (userInput === '' || userInput === null) {
     prompt('Please input a  correct value');
     return;
   }
