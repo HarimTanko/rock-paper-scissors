@@ -91,10 +91,6 @@ const playRound = (playerSelection, computerSelection) => {
 };
 
 const getWinner = (message) => {
-  if (!message.includes('You Win!') || !message.includes('You Lose!')) {
-    return;
-  }
-
   if (message === 'You Win!') {
     score.player++;
     console.log(
