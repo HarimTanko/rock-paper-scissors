@@ -35,23 +35,35 @@
 
 // console.log(evenOdd(19));
 
+const choices = document.querySelectorAll('.choice');
+const scores = document.getElementById('score');
+const playerScore = document.getElementById('player-score');
+const computerScore = document.getElementById('computer-score');
+const result = document.getElementById('result');
+const restart = document.getElementById('restart');
+const selectHeader = document.querySelector('.selection-header');
+const modal = document.querySelector('.modal');
+
 let options = ['rock', 'paper', 'scissors'];
-let playerSelection = '';
-let computerSelection = '';
+let playerSelection = 0;
+let computerSelection = 0;
+let moves = 0;
 
 const score = {
   player: 0,
   computer: 0,
 };
 
-function playSelect() {
-  let playerInput = prompt('please select between rock, paper and scissors');
-  playerSelection = playerInput.toLowerCase();
+function playSelect(e) {
+  console.log(e.target.id);
+  playerSelection = e.target.id;
 
-  while (options.indexOf(playerSelection) === -1 || playerSelection === null) {
-    playerInput = prompt('Please input a valid slection');
-    playerSelection = playerInput.toLowerCase();
-  }
+  // let playerInput = prompt('please select between rock, paper and scissors');
+  // playerSelection = playerInput.toLowerCase();
+  // while (options.indexOf(playerSelection) === -1 || playerSelection === null) {
+  //   playerInput = prompt('Please input a valid slection');
+  //   playerSelection = playerInput.toLowerCase();
+  // }
 }
 
 const computerPlay = () => {
@@ -72,35 +84,111 @@ const computerPlay = () => {
 };
 
 const playRound = (playerSelection, computerSelection) => {
+  restart.style.display = 'inline-block';
+
   if (playerSelection === computerSelection) {
-    console.log(`Draw. ${playerSelection} equal to ${computerSelection}`);
+    // console.log(`Draw. ${playerSelection} equal to ${computerSelection}`);
+    return 'draw';
   } else if (
     (playerSelection === 'rock' && computerSelection === 'scissors') ||
     (playerSelection == 'paper' && computerSelection === 'rock') ||
     (playerSelection === 'scissors' && computerSelection === 'paper')
   ) {
     score.player++;
-    console.log(
-      `Player wins round  ${playerSelection} beats ${computerSelection} `
-    );
+    console.log(score.player);
+    playerScore.innerText = `Player: ${score.player}`;
+    // console.log(
+    //   `Player wins round  ${playerSelection} beats ${computerSelection} `
+    // );
+    return 'player';
   } else {
     score.computer++;
-    console.log(
-      `Computer wins round ${computerSelection} beats ${playerSelection}`
-    );
+    console.log(score.computer);
+    computerScore.innerText = `Computer: ${score.computer}`;
+    // console.log(
+    //   `Computer wins round ${computerSelection} beats ${playerSelection}`
+    // );
+    return 'computer';
   }
 };
 
-for (let i = 0; i < 5; i++) {
-  playSelect();
+function playGame(e) {
+  moves++;
+  playerSelection = e.target.id;
   computerPlay();
+  const winner = playRound(playerSelection, computerSelection);
+  showWinner(winner, computerSelection);
 
-  playRound(playerSelection, computerSelection);
+  if (moves === 5) {
+    gameOver(choices);
+  }
 }
-if (score.player > score.computer) {
-  console.log(`Player wins ${score.player} to ${score.computer}`);
-} else if (score.computer > score.player) {
-  console.log(`Computer wins ${score.computer} to ${score.player}`);
-} else {
-  console.log(`Game ends in a draw  ${score.player} - ${score.computer}`);
+
+function showWinner(winner, computerSelection) {
+  if (winner === 'player') {
+    //show modal result
+    result.innerHTML = `
+            <h1 class="text-win">You Win</h1>
+            <i class="fas fa-hand-${playerSelection} fa-10x"></i>
+            <p>Computer chose <strong>${computerSelection}</strong> </p>
+        `;
+  } else if (winner === 'computer') {
+    //show modal result
+    result.innerHTML = `
+                <h1 class="text-lose">You Lose</h1>
+                <i class="fas fa-hand-${computerSelection} fa-10x"></i>
+                <p>Computer chose <strong>${computerSelection}</strong> </p>
+            `;
+  } else {
+    //show modal result
+    result.innerHTML = `
+              <h1>Tie</h1>
+              <i class="fas fa-hand-${computerSelection} fa-10x"></i>
+              <p>Computer chose <strong>${computerSelection}</strong> </p>
+          `;
+  }
+
+  //show score
+  score.innerHTML = `
+  <p>Player: ${score.player}</p>
+  <p>Computer: ${score.computer}</p>
+  `;
+
+  modal.style.display = 'block';
 }
+
+function gameOver(choices) {
+  choices.forEach((choice) => {
+    choice.style.display = 'none';
+  });
+
+  if (score.player > score.computer) {
+    selectHeader.innerHTML = `<h1 class="text-win">You win the game! ${score.player} to ${score.computer} </h1>`;
+  } else if (score.computer > score.player) {
+    selectHeader.innerHTML = `<h1 class="text-lose">You lose the game ${score.computer} to ${score.player}</h1> `;
+  } else {
+    selectHeader.innerHTML = `<h1>Draw!</h1>`;
+  }
+}
+
+function clearModal(e) {
+  if (e.target == modal) {
+    modal.style.display = 'none';
+  }
+}
+
+function reset() {
+  moves = 0;
+  score.computer = 0;
+  score.player = 0;
+  playerScore.innerText = `Player: ${score.player}`;
+  computerScore.innerText = `Computer: ${score.computer}`;
+  selectHeader.innerText = `Make Your Selection `;
+  choices.forEach((choice) => {
+    choice.style.display = 'inline-block';
+  });
+}
+
+choices.forEach((choice) => choice.addEventListener('click', playGame));
+restart.addEventListener('click', reset);
+window.addEventListener('click', clearModal);
