@@ -55,7 +55,7 @@ const score = {
 };
 
 function playSelect(e) {
-  console.log(e.target.id);
+  // console.log(e.target.id);
   playerSelection = e.target.id;
 
   // let playerInput = prompt('please select between rock, paper and scissors');
